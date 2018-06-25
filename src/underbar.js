@@ -100,7 +100,14 @@
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
-    // copying code in and modifying it
+    // copying code in and modifying 
+     console.log("opposite ", test)
+
+    return _.filter(collection,function(element){
+      if( !test(element) ){
+        return element;
+      }
+    });
   };
 
   // Produce a duplicate-free version of the array.
