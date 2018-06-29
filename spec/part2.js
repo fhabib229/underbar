@@ -400,7 +400,7 @@
       });
     });
 
-    describe('memoize', function() {
+    describe('memorize', function() {
       var add, memoAdd;
 
       beforeEach(function() {

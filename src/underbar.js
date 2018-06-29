@@ -257,7 +257,7 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    
+
     var answer = arguments[0];
     var objs = Array.prototype.slice.call(arguments,1);
 
@@ -273,6 +273,19 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+
+    var answer = arguments[0];
+    var objs = Array.prototype.slice.call(arguments,1);
+
+      _.each(objs, function(item){
+        _.each(item,function(value,key){
+          if( answer[key] === undefined ){
+            answer[key] = value;
+          }
+        })
+      })
+
+    return answer;
   };
 
 
@@ -316,6 +329,20 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+
+     var answer = {};
+
+    return function(){
+      
+      var args = JSON.stringify(arguments)
+
+      if( answer[args] === undefined ){
+        answer[args] = func.apply(this,arguments)
+      }
+
+      return answer[args]
+    }
+    
   };
 
   // Delays a function for the given number of milliseconds, and then calls
