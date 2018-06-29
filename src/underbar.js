@@ -363,7 +363,7 @@
       
       func();
     },wait)
-    
+
   };
 
 
@@ -378,6 +378,19 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
+     var answer = Array.prototype.slice.call(array);
+
+    for(var i = 0 ; i < answer.length ; i++){
+      var random = Math.ceil(Math.random() * answer.length-1) 
+      if( random !== i ){
+        var temp = answer[i];
+        answer[i] = answer[random];
+        answer[random] = temp;
+      }
+    }
+    return answer;
+    
   };
 
 
